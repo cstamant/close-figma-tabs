@@ -2,9 +2,9 @@ window.addEventListener('load', () => {
   // Detect if the Figma page is a specific file or design link (indicating project open)
   const figmaURLPatterns = ["figma.com/file/", "figma.com/design/"];
   
-  const isFigmaFileOrDesign = figmaURLPatterns.some(pattern => window.location.href.includes(pattern));
+  const isFigmaURL = figmaURLPatterns.some(pattern => window.location.href.includes(pattern));
 
-  if (isFigmaFileOrDesign) {
+  if (isFigmaURL) {
     // Check if the app is redirecting or trying to open in the desktop app
     const checkForAppRedirect = () => {
       // Figma may display a message prompting the user to open the desktop app
