@@ -1,15 +1,23 @@
 window.addEventListener('load', () => {
-  // Detect if the Figma page redirects or opens the desktop app
-  if (window.location.href.includes("figma.com/file/")) {
-    // Check if the app is trying to redirect to the desktop
+  // Detect if the Figma page is a specific file or design link (indicating project open)
+  const figmaURLPatterns = ["figma.com/file/", "figma.com/design/"];
+  
+  const isFigmaFileOrDesign = figmaURLPatterns.some(pattern => window.location.href.includes(pattern));
+
+  if (isFigmaFileOrDesign) {
+    // Check if the app is redirecting or trying to open in the desktop app
     const checkForAppRedirect = () => {
+      // Figma may display a message prompting the user to open the desktop app
       if (document.body.innerText.includes("Open here instead")) {
-        // Send a message to close this tab
+        // Send a message to the background script to close the tab
         chrome.runtime.sendMessage({ action: "closeTab" });
       }
     };
 
-    // Check for redirection every 2 seconds (or adjust timing as needed)
+    // Run the check as soon as the file or design page loads
+    checkForAppRedirect();
+
+    // Continue checking for any dynamic changes every 2 seconds (optional)
     setInterval(checkForAppRedirect, 2000);
   }
 });
