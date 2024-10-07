@@ -6,7 +6,7 @@
 Chrome extension to close figma tabs after they open in the desktop app
 
 ## Installation
-1. Download latest release
+1. Download [latest release](https://github.com/cstamant/close-figma-tabs/releases)
 2. Extract to somewhere on your drive
 3. Open [chrome extension page](chrome://extensions/)
 4. Enable developer mode in the top right
