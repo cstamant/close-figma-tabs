@@ -5,7 +5,11 @@ window.addEventListener('load', () => {
 
   if (isFigmaURL) {
     const checkForAppRedirect = () => {
-      if (document.body.innerText.includes("Open here instead")) {
+      const bodyText = document.body.innerText;
+
+      if (bodyText.includes("Open here instead") || 
+          bodyText.includes("In Figma App") ||
+          bodyText.includes("Open in Desktop App")) {
         chrome.runtime.sendMessage({ action: "closeTab" });
       }
     };
